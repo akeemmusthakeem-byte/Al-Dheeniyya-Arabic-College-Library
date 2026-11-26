@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Al Dheeniyya Arabic College — Management System</title>
+  <meta name="description" content="Student and Staff Management System for Al Dheeniyya Arabic College, Pallimulla, Panadura, Sri Lanka — with Library, attendance, examinations, timetable, roles and backup." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- ============ LOGIN ============ -->
+  <div id="loginView" class="login-wrap">
+    <section class="login-hero" aria-hidden="true">
+      <div>
+        <div class="arabic" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <h1>Al Dheeniyya<br/>Arabic College</h1>
+        <p>Centralized academic, attendance, examination, library, role-based access control and database backup platform — Pallimulla, Panadura, Sri Lanka.</p>
+        <div class="login-feats">
+          <div><b>Students &amp; Staff</b>Admissions, guardians, departments and class assignments.</div>
+          <div><b>Attendance &amp; Exams</b>Daily registers, marks entry, grades and reports.</div>
+          <div><b>Library</b>Catalogue, issue &amp; return, overdue tracking.</div>
+          <div><b>Backup &amp; Roles</b>JSON / CSV export, restore and permission control.</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:#94a3b8">Al Dheeniyya Arabic College · Pallimulla, Panadura · Sri Lanka</p>
+    </section>
+    <section class="login-panel">
+      <div class="login-card">
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:16px">
+          <div class="brand-mark">A</div>
+          <div>
+            <h2>Sign in</h2>
+            <p class="muted" style="font-size:12px">Management System · Secure access</p>
+          </div>
+        </div>
+        <div id="loginError" class="alert alert-error hidden" role="alert"></div>
+        <form id="loginForm" novalidate>
+          <div class="field" style="margin-bottom:12px">
+            <label for="loginUser">Username or email</label>
+            <input class="input" id="loginUser" autocomplete="username" placeholder="e.g. admin" required />
+          </div>
+          <div class="field" style="margin-bottom:16px">
+            <label for="loginPass">Password</label>
+            <input class="input" id="loginPass" type="password" autocomplete="current-password" placeholder="••••••••" required />
+          </div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;padding:11px" type="submit">Sign in</button>
+        </form>
+        <div class="demo-box">
+          <b>Demo accounts</b> — any password works. Try:
+          <div style="margin-top:6px;line-height:1.9">
+            <code>admin</code> Super Admin · <code>teacher</code> Teacher<br/>
+            <code>librarian</code> Librarian · <code>student</code> Student
+          </div>
+        </div>
+        <p class="muted" style="font-size:11px;margin-top:14px;text-align:center">Data is stored locally in your browser (localStorage). Use Backup → Export to save a copy.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ APP ============ -->
+  <div id="appView" class="app hidden">
+    <div id="navBackdrop" class="backdrop-nav hidden"></div>
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="sidebar-brand">
+        <div class="brand-mark" id="brandMark">A</div>
+        <div><b id="brandName">Al Dheeniyya Arabic College</b><span id="brandSub">Pallimulla, Panadura</span></div>
+      </div>
+      <nav class="nav" id="mainNav"></nav>
+      <div class="sidebar-foot">
+        <div id="sideUser"></div>
+        <div style="margin-top:6px">© <span id="year"></span> Al Dheeniyya Arabic College</div>
+      </div>
+    </aside>
+    <div class="main">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        <h1 id="pageTitle">Dashboard</h1>
+        <div class="spacer"></div>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle dark / light">◐</button>
+        <div class="user-chip">
+          <div class="avatar" id="topAvatar">A</div>
+          <div class="u-meta">
+            <div id="topUserName" style="font-weight:700;font-size:13px;line-height:1.2"></div>
+            <div id="topUserRole" class="muted" style="font-size:11px"></div>
+          </div>
+          <button class="btn btn-sm" id="logoutBtn">Log out</button>
+        </div>
+      </header>
+      <main class="content" id="content" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <div id="modalRoot"></div>
+  <div id="toasts" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
